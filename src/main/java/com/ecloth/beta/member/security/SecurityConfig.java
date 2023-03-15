@@ -47,19 +47,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()// 세션을 사용하지 않고 JWT 토큰을 활용하여 진행, csrf토큰검사를 비활성화
                 .cors()
                 .and()
-                .exceptionHandling()
-
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-
-                .and()
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, redisTemplate) // JwtAuthenticationFilter를 UsernamePasswordAuthentictaionFilter 전에 적용
-                        , UsernamePasswordAuthenticationFilter.class)
-
                 .authorizeRequests()
-                .antMatchers(PERMIT_URL_ARRAY).permitAll()
-                .anyRequest().authenticated();
+                .anyRequest()
+                .permitAll();
+//                .exceptionHandling()
+//
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//
+//                .and()
+//                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, redisTemplate) // JwtAuthenticationFilter를 UsernamePasswordAuthentictaionFilter 전에 적용
+//                        , UsernamePasswordAuthenticationFilter.class)
+//
+//                .authorizeRequests()
+//                .antMatchers(PERMIT_URL_ARRAY).permitAll()
+//                .anyRequest().authenticated();
     }
 
     @Bean
