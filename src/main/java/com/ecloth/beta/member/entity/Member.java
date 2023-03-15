@@ -4,12 +4,12 @@ import com.ecloth.beta.common.entity.BaseEntity;
 import com.ecloth.beta.follow.entity.Follow;
 import com.ecloth.beta.member.model.MemberRole;
 import com.ecloth.beta.member.model.MemberStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.envers.AuditOverride;
-import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.List;
 
