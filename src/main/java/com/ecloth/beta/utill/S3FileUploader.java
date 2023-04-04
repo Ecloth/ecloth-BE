@@ -58,7 +58,7 @@ public class S3FileUploader {
     }
 
     public static void deleteObjectFromS3(String imageUrl) throws Exception {
-        // AWS S3 클라이언트 생성
+
         AmazonS3 s3client = AmazonS3ClientBuilder.standard()
                 .withRegion(Regions.fromName(REGION_NAME))
                 .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretKey)))
