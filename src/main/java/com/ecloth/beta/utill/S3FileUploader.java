@@ -23,8 +23,8 @@ public class S3FileUploader {
     @Value("{cloud.aws.credentials.secret-key}")
     private static String secretKey;
 
-    private static final String REGION_NAME = "ap-northeast-2"; // 사용하고자 하는 리전 정보
-    private static final String BUCKET_NAME = "weatheroutfit"; // S3 버킷 이름
+    private static final String REGION_NAME = "ap-northeast-2";
+    private static final String BUCKET_NAME = "weatheroutfit";
 
     public static String uploadImageToS3AndGetURL(MultipartFile multipartFile) throws Exception {
         // AWS S3 클라이언트 생성
@@ -41,7 +41,6 @@ public class S3FileUploader {
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentType(contentType);
 
-        // Convert MultipartFile to InputStream
         InputStream inputStream = multipartFile.getInputStream();
 
         PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, changedFilename, inputStream, metadata)
@@ -50,7 +49,7 @@ public class S3FileUploader {
         try {
             s3client.putObject(putObjectRequest);
         } catch (Exception e) {
-            throw new Exception("S3 파일 업로드 실패", e); // 예외 정보를 출력하기 위해 새로운 예외를 생성하고 예외를 다시 던집니다.
+            throw new Exception("S3 파일 업로드 실패", e);
         }
 
         // S3 URL 생성
@@ -71,7 +70,7 @@ public class S3FileUploader {
         try {
             s3client.deleteObject(BUCKET_NAME, filename);
         } catch (Exception e) {
-            throw new Exception("S3 파일 삭제 실패", e); // 예외 정보를 출력하기 위해 새로운 예외를 생성하고 예외를 다시 던집니다.
+            throw new Exception("S3 파일 삭제 실패", e);
         }
     }
 
